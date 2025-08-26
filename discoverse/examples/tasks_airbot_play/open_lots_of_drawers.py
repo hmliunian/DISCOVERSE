@@ -127,7 +127,10 @@ if __name__ == "__main__":
     arm_ik = AirbotPlayIK()
 
     # trmat = Rotation.from_euler("xyz", [-np.pi/2., 0., np.pi], degrees=False).as_matrix()
-    trmat = np.eye(3)
+    if args.drawers == 2:
+        trmat = Rotation.from_euler("xyz", [np.pi/2., 0., 0], degrees=False).as_matrix()
+    else:
+        trmat = np.eye(3)
     stm = SimpleStateMachine()
     stm.max_state_cnt = 7
     max_time = 15.0 #s
