@@ -34,6 +34,8 @@ class SimNode(AirbotPlayTaskBase):
         # self.mj_model.body("arm_pose").pos[:3] = self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_arm_pos
         self.mj_model.body("arm_pose").pos[:3] =  self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_arm_pos
         self.arm_ori_pos = self.mj_model.body("arm_pose").pos.copy()
+        self.ab_cam_pos=[-0.1, -0.2, 0.2]
+        self.mj_model.camera("eye_side").pos[:3] = self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_cam_pos
 
     def domain_randomization(self):
         self.mj_data.qpos[self.drawer_index] += np.random.uniform(self.min_drawer_rate,self.max_drawer_rate)
