@@ -1,0 +1,211 @@
+<mujocoinclude>
+
+  <geom size="0.195 0.535 0.019" pos="0 0 0.019" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.535 0.0075" pos="0 0 0.38" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.535 0.0075" pos="0 0 0.38" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.535 0.0075" pos="0 0 0.73" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.535 0.0075" pos="0 0 1.08" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.535 0.019" pos="0 0 1.441" type="box" rgba="1 1 1 1"/>
+
+  <geom size="0.195 0.019 0.72" pos="0 0.52 0.735" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.0075 0.72" pos="0 0.169 0.735" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.0075 0.72" pos="0 -0.169 0.735" type="box" rgba="1 1 1 1"/>
+  <geom size="0.195 0.019 0.72" pos="0 -0.52 0.735" type="box" rgba="1 1 1 1"/>
+
+  <!-- <body pos="-0.2 0 0.9875">
+    <body name="drawer_1" pos="-0.0075 0.003 0.005">
+      <joint range='0 0.3' type='slide' axis='-1 0 0' frictionloss="0.05"/>
+      <inertial pos="0.1 0 0" quat="1 0 0 0" mass="0.011566" diaginertia="0.000035528 0.000021045 0.000021045"/>
+
+      <geom size="0.005 0.007" pos="-0.002 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+      <geom size="0.010 0.002" pos="-0.012 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+
+      <geom size="0.0075 0.158 0.081" pos="0.015 -0.003 -0.005" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 -0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.006 0.14 0.035" pos="0.33 0 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.16 0.14 0.006" pos="0.175 0 -0.061" type="box" rgba=".9 .9 .8 1"/>
+
+      <site name="drawer_1_handle" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/>
+    </body>
+  </body> -->
+
+<!-- <body pos="-0.2 0 0.9875"> -->
+
+    <body name="drawer_1" pos="-0.2 0.342 0.64">
+      <joint range='0 0.3' type='slide' axis='-1 0 0' frictionloss="0.05"/>
+      <inertial pos="0.1 0 0" quat="1 0 0 0" mass="0.011566" diaginertia="0.000035528 0.000021045 0.000021045"/>
+
+      <geom size="0.005 0.007" pos="-0.002 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+      <geom size="0.010 0.002" pos="-0.012 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+
+      <geom size="0.0075 0.158 0.081" pos="0.015 -0.003 -0.005" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 -0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.006 0.14 0.035" pos="0.33 0 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.16 0.14 0.006" pos="0.175 0 -0.061" type="box" rgba=".9 .9 .8 1"/>
+
+      <site name="drawer_1_handle" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/>
+    </body>
+
+    <body name="drawer_2" pos="-0.2 0.342 0.475">
+      <joint range='0 0.3' type='slide' axis='-1 0 0' frictionloss="0.05"/>
+      <inertial pos="0.1 0 0" quat="1 0 0 0" mass="0.011566" diaginertia="0.000035528 0.000021045 0.000021045"/>
+
+      <!-- <geom size="0.005 0.007" pos="-0.002 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+      <geom size="0.010 0.002" pos="-0.012 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/> -->
+      <geom size="0.005 0.015" pos="-0.015 0.065 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+      <geom size="0.005 0.015" pos="-0.015 -0.065 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+      <geom size="0.005 0.065" pos="-0.03 0 0" euler="1.5708 0 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="10 10 10" rgba=".1 .1 .1 1"/>
+
+      <geom size="0.0075 0.158 0.081" pos="0.015 -0.003 -0.005" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 -0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.006 0.14 0.035" pos="0.33 0 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.16 0.14 0.006" pos="0.175 0 -0.061" type="box" rgba=".9 .9 .8 1"/>
+
+      <site name="drawer_2_handle" pos='-0.03 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/>
+      <!-- <site name="drawer_2_handle" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/> -->
+    </body>
+
+
+
+  <body name="drawer_3" pos="-0.2 -0.335 1.175">
+    <joint range='0 0.3' type='slide' axis='-1 0 0' frictionloss="0.05"/>
+    <inertial pos="0.1 0 0" quat="1 0 0 0" mass="0.011566" diaginertia="0.000035528 0.000021045 0.000021045"/>
+
+    <geom size="0.005 0.007" pos="-0.002 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.010 0.002" pos="-0.012 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+
+    <geom size="0.0075 0.158 0.081" pos="0.015 -0.003 -0.005" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.165 0.006 0.035" pos="0.181 0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.165 0.006 0.035" pos="0.181 -0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.006 0.14 0.035" pos="0.33 0 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.16 0.14 0.006" pos="0.175 0 -0.061" type="box" rgba=".9 .9 .8 1"/>
+
+    <site name="drawer_3_handle" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/>
+  </body>
+
+  <body name="drawer_4" pos="-0.2 -0.335 1.34">
+    <joint range='0 0.3' type='slide' axis='-1 0 0' frictionloss="0.05"/>
+    <inertial pos="0.1 0 0" quat="1 0 0 0" mass="0.011566" diaginertia="0.000035528 0.000021045 0.000021045"/>
+
+    <geom size="0.005 0.007" pos="-0.002 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.010 0.002" pos="-0.012 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+
+    <geom size="0.0075 0.158 0.081" pos="0.015 -0.003 -0.005" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.165 0.006 0.035" pos="0.181 0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.165 0.006 0.035" pos="0.181 -0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.006 0.14 0.035" pos="0.33 0 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.16 0.14 0.006" pos="0.175 0 -0.061" type="box" rgba=".9 .9 .8 1"/>
+
+    <site name="drawer_4_handle" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/>
+  </body>
+
+   <body name="drawer_5" pos="-0.2075 0.003 0.9925">
+      <joint range='0 0.3' type='slide' axis='-1 0 0' frictionloss="0.05"/>
+      <inertial pos="0.1 0 0" quat="1 0 0 0" mass="0.011566" diaginertia="0.000035528 0.000021045 0.000021045"/>
+
+      <geom size="0.005 0.007" pos="-0.002 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+      <geom size="0.010 0.002" pos="-0.012 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+
+      <geom size="0.0075 0.158 0.081" pos="0.015 -0.003 -0.005" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.165 0.006 0.035" pos="0.181 -0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.006 0.14 0.035" pos="0.33 0 -0.026" type="box" rgba=".9 .9 .8 1"/>
+      <geom size="0.16 0.14 0.006" pos="0.175 0 -0.061" type="box" rgba=".9 .9 .8 1"/>1
+
+      <site name="drawer_5_handle" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/>
+    </body>
+  <!-- </body> -->
+
+  <body name="drawer_6" pos="-0.2 0 0.8225">
+    <joint range='0 0.9' type='slide' axis='-1 0 0' frictionloss="0.05"/>
+    <inertial pos="0.1 0 0" quat="1 0 0 0" mass="0.011566" diaginertia="0.000035528 0.000021045 0.000021045"/>
+
+    
+
+
+    <geom size="0.005 0.007" pos="-0.002 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.010 0.002" pos="-0.012 0 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+
+    <geom size="0.0075 0.158 0.081" pos="0.0075 0 0" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.165 0.006 0.035" pos="0.181 0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.165 0.006 0.035" pos="0.181 -0.144 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.006 0.14 0.035" pos="0.33 0 -0.026" type="box" rgba=".9 .9 .8 1"/>
+    <geom size="0.16 0.14 0.006" pos="0.165 0 -0.061" type="box" rgba=".9 .9 .8 1"/>
+
+
+    <site name="drawer_6_handle" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/>
+
+  </body>
+
+  <body name="hinge_door_1" pos="-0.185 0 0.5575">
+    <geom type="box" size="0.01 0.155 0.16" pos="0 0 0" rgba="0.9 0.9 0.8 1" density="0.01"/>
+
+    <joint name="hinge_joint_1" type="hinge" axis="0 0 1" pos="0 0.15 0.08" range="-90 0" frictionloss="0.01"  />
+    <geom size="0.005 0.015" pos="-0.025 -0.127 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="0.0005 0.0005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.010 0.002" pos="-0.042 -0.127 0" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="0.0005 0.0005 0.0001" rgba=".1 .1 .1 1"/>
+    <!-- 门把手，使用site来定义 -->
+    <site name="hinge_door_1_handle" pos="-0.04 -0.127  0" euler="0 0 3.1416" size="0.001" type="sphere" rgba="0.7 0.7 0.7 1"/>
+  
+  </body>
+
+  <body name="hinge_door_2" pos="-0.185 0 1.255">
+    <geom type="box" size="0.01 0.155 0.16" pos="0 0 0" rgba="0.9 0.9 0.8 1" density="0.01"/>
+
+    <!-- <site name="hinge_door_1" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/> -->
+
+    <joint name="hinge_joint_2" type="hinge" axis="0 0 1" pos="0 0.15 0.08" range="-90 0" frictionloss="0.1"/>
+    
+    <geom size="0.005 0.010" pos="-0.02 -0.127 0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.010" pos="-0.02 -0.127 -0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.065" pos="-0.03 -0.127 0" euler="0 0 1.5708" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="0.01 0.01 0.01" rgba=".1 .1 .1 1"/>
+    <!-- 门把手，使用site来定义 -->
+    <site name="hinge_door_2_handle" pos="-0.04 -0.127  0" euler="0 0 3.1416" size="0.001" type="sphere" rgba="0.7 0.7 0.7 1"/>
+  
+  </body>
+
+  <body name="hinge_door_3" pos="-0.185 0.340 0.9055">
+    <geom type="box" size="0.01 0.155 0.16" pos="0 0 0" rgba="0.9 0.9 0.8 1" density="0.01"/>
+
+    <!-- <site name="hinge_door_1" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/> -->
+
+    <joint name="hinge_joint_3" type="hinge" axis="0 0 1" pos="0 0.15 0.08" range="-90 0" frictionloss="0.1"/>
+    
+    <geom size="0.005 0.010" pos="-0.02 -0.127 0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.010" pos="-0.02 -0.127 -0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.065" pos="-0.03 -0.127 0" euler="0 0 1.5708" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="0.01 0.01 0.01" rgba=".1 .1 .1 1"/>
+    <!-- 门把手，使用site来定义 -->
+    <site name="hinge_door_3_handle" pos="-0.04 -0.127  0" euler="0 0 3.1416" size="0.001" type="sphere" rgba="0.7 0.7 0.7 1"/>
+  </body>
+   <body name="hinge_door_4" pos="-0.185 -0.34 0.5575">
+    <geom type="box" size="0.01 0.155 0.16" pos="0 0 0" rgba="0.9 0.9 0.8 1" density="0.01"/>
+    <joint name="hinge_joint_4" type="hinge" axis="0 0 1" pos="0 0.15 0.08" range="-90 0" frictionloss="0.1"/>
+    
+    <geom size="0.005 0.010" pos="-0.02 -0.127 0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.010" pos="-0.02 -0.127 -0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.065" pos="-0.03 -0.127 0" euler="0 0 1.5708" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="0.01 0.01 0.01" rgba=".1 .1 .1 1"/>
+    <!-- 门把手，使用site来定义 -->
+    <site name="hinge_door_4_handle" pos="-0.04 -0.127  0" euler="0 0 3.1416" size="0.001" type="sphere" rgba="0.7 0.7 0.7 1"/>
+  
+  </body>
+   <body name="hinge_door_5" pos="-0.185 -0.340 0.9075">
+    <geom type="box" size="0.01 0.155 0.16" pos="0 0 0" rgba="0.9 0.9 0.8 1" density="0.01"/>
+
+    <!-- <site name="hinge_door_1" pos='-0.01 0 0' euler="0 0 3.1416" size='0.001' type='sphere'/> -->
+
+    <joint name="hinge_joint_5" type="hinge" axis="0 0 1" pos="0 0.15 0.08" range="-90 0" frictionloss="0.1"/>
+    
+    <geom size="0.005 0.010" pos="-0.02 -0.127 0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.010" pos="-0.02 -0.127 -0.05" euler="0 1.5708 0" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="1 0.005 0.0001" rgba=".1 .1 .1 1"/>
+    <geom size="0.005 0.065" pos="-0.03 -0.127 0" euler="0 0 1.5708" type="cylinder" condim="4" solimp="2 1 0.01" solref="0.001 1" friction="0.01 0.01 0.01" rgba=".1 .1 .1 1"/>
+    <!-- 门把手，使用site来定义 -->
+    <site name="hinge_door_5_handle" pos="-0.04 -0.127  0" euler="0 0 3.1416" size="0.001" type="sphere" rgba="0.7 0.7 0.7 1"/>
+  
+  </body>
+  
+  <!-- <body name="hinge_door_6" pos="-0.185 0.36 0.20"> -->
+    
+
+</mujocoinclude>
