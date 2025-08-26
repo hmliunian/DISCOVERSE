@@ -26,8 +26,10 @@ class SimNode(AirbotPlayTaskBase):
         # self.max_drawer_rate=args.max_drawer
         # self.min_drawer_rate=args.min_drawer
         self.random_position=args.random_position
-        self.ab_arm_pos=[0.407, 0.633, -0.287]
+        self.ab_arm_pos=[0.25, 0.454, -0.23]
+        # self.ab_arm_pos=[0.95, 0.454, -0.23]
         self.mj_model.body("arm_pose").pos[:3] = self.mj_model.body("hinge_door_" + str(self.doors)).pos[:3]  + self.ab_arm_pos
+        self.arm_ori_pos = self.mj_model.body("arm_pose").pos.copy()
 
     def domain_randomization(self):
         # self.mj_data.qpos[self.drawer_index] += np.random.uniform(self.min_drawer_rate,self.max_drawer_rate)
@@ -36,7 +38,9 @@ class SimNode(AirbotPlayTaskBase):
         # self.mj_data.qpos[self.nj+1] += 2.*(np.random.random()-0.5) * 0.05
         self.origin_pos=self.mj_data.qpos.copy()
         if self.random_position:
-            self.mj_model.body("arm_pose").pos[:3] = self.mj_model.body("arm_pose").pos[:3] + 3.*(np.random.random(3) - 0.5) * 0.1#2.*(np.random.random(2) - 0.5) * 0.1
+            random_bias = 2.*(np.random.random(3) - 0.5) * 0.20
+            random_bias[0] /= 4
+            self.mj_model.body("arm_pose").pos[:3] = self.arm_ori_pos[:3] + random_bias
         # self.mj_data.site(self.drawers_handle).xpos[0] += 2
 
         # mujoco.mj_forward(self.mj_model, self.mj_data)
@@ -44,8 +48,9 @@ class SimNode(AirbotPlayTaskBase):
     def check_success(self):
         # return (self.mj_data.qpos[9] > 0.15)
         # return (self.mj_data.qpos[9] > 0.3)
-        diff=np.sum(np.square(self.mj_data.qpos-self.origin_pos))
-        return diff > 7.5
+        return self.get_joint_position("hinge_joint_"+str(self.doors)) < -1.3
+        # diff=np.sum(np.square(self.mj_data.qpos-self.origin_pos))
+        # return diff > 7.5
         # return False
 
 
@@ -69,7 +74,7 @@ cfg.gs_model_dict["hinge_door_3"]   = "hinge/door3.ply"
 cfg.gs_model_dict["hinge_door_4"]   = "hinge/door4.ply"
 cfg.gs_model_dict["hinge_door_5"]   = "hinge/door5.ply"
 # cfg.gs_model_dict["hinge_door_6"]   = "hinge/door6.ply"
-cfg.init_qpos[:] = [-0.2, -0.894,  1.19,  0,  0, 0,  0.]
+cfg.init_qpos[:] = [0,0,0,  0,  0, 0,  0.]
 # cfg.init_qpos[:] = [-0.2, 0,  0,  0,  0, 0,  0.]
 cfg.mjcf_file_path = "mjcf/tasks_airbot_play/open_lots_of_hinge_doors.xml"
 cfg.obj_list     = ["hinge_door_1","hinge_door_2","hinge_door_3","hinge_door_4","hinge_door_5",
@@ -117,12 +122,12 @@ if __name__ == "__main__":
         
     arm_ik = AirbotPlayIK()
 
-    # trmat = Rotation.from_euler("xyz", [-np.pi/2., 0., np.pi], degrees=False).as_matrix()
-    trmat = np.eye(3)
+    trmat = Rotation.from_euler("xyz", [np.pi/2, 0., 0], degrees=False).as_matrix()
+    # trmat = np.eye(3)
 
     stm = SimpleStateMachine()
     stm.max_state_cnt =12
-    max_time = 40.0 #s
+    max_time = 10.0 #s
 
     action = np.zeros(7)
     # drawers="drawer_"+str(args.drawers)+"_handle"
@@ -141,18 +146,24 @@ if __name__ == "__main__":
         try:
             if stm.trigger(): 
                 tmat_armbase_2_world = np.linalg.inv(get_body_tmat(sim_node.mj_data, "arm_base"))
-                if stm.state_idx == 0: # 伸到柜子前
+                if stm.state_idx == 0:
+                    # use the last goal pose ik result for reference joints in case of wrist flip (just decrease the risk but not eliminate it)
+                    tmat_handle = get_site_tmat(sim_node.mj_data, doors)
+                    tmat_handle[:3, 3] = tmat_handle[:3, 3] +  np.array([-0.35, 0.35, 0])
+                    tmat_tgt_local = tmat_armbase_2_world @ tmat_handle
+                    sim_node.target_control[:6] = arm_ik.properIK(tmat_tgt_local[:3,3], trmat, sim_node.mj_data.qpos[:6])
                     tmat_handle = get_site_tmat(sim_node.mj_data, doors)
                     tmat_handle[:3, 3] = tmat_handle[:3, 3] + 0.1 * tmat_handle[:3, 0]
                     tmat_tgt_local = tmat_armbase_2_world @ tmat_handle
-                    sim_node.target_control[:6] = arm_ik.properIK(tmat_tgt_local[:3,3], trmat, sim_node.mj_data.qpos[:6])
+                    sim_node.target_control[4] *= 10 # make sure the elbow is up
+                    sim_node.target_control[:6] = arm_ik.properIK(tmat_tgt_local[:3,3], trmat, sim_node.target_control[:6])
                     sim_node.target_control[6] = 1
-                    move_speed = 1.5
+                    # move_speed = 1.5
                 elif stm.state_idx == 1: # 伸到把手位置
                     tmat_handle = get_site_tmat(sim_node.mj_data, doors)
                     tmat_tgt_local = tmat_armbase_2_world @ tmat_handle
                     sim_node.target_control[:6] = arm_ik.properIK(tmat_tgt_local[:3,3], trmat, sim_node.mj_data.qpos[:6])
-                    move_speed = 1.0  
+                    # move_speed = 1.0  
                     # sim_node.target_control[5] = 1.57
                 elif stm.state_idx == 2: # 抓住把手
                     
@@ -222,8 +233,8 @@ if __name__ == "__main__":
             traceback.print_exc()
             sim_node.reset()
         
-        if args.doors==1:
-            sim_node.target_control[5] = 1.57
+        # if args.doors==1:
+        #     sim_node.target_control[5] = 1.57
         for i in range(sim_node.nj-1):
             action[i] = step_func(action[i], sim_node.target_control[i], move_speed * sim_node.joint_move_ratio[i] * sim_node.delta_t)
         action[6] = sim_node.target_control[6]

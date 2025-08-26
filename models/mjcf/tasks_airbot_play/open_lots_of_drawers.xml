@@ -11,7 +11,7 @@
   <worldbody>
 
     <!-- ======= AITBOT PLAY ======= -->
-    <body name="arm_pose" pos="0.3 0.92 0.71" euler="0 0 3.1416">
+    <body name="arm_pose" pos="0.3 0.92 0.71" euler="0 0 0">
       <include file="../airbot_play/airbot_play.xml"/>
     </body>
 

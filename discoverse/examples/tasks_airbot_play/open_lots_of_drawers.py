@@ -20,18 +20,20 @@ class SimNode(AirbotPlayTaskBase):
         self.drawer=args.drawers
         self.drawers_handle="drawer_"+str(args.drawers)+"_handle"
         self.drawer_index=self.nj+self.drawer
-        self.arm_ori_pos = self.mj_model.body("arm_pose").pos.copy()
         self.max_drawer_rate=args.max_drawer
         self.min_drawer_rate=args.min_drawer
         self.random_position=args.random_position
 
         # self.ab_arm_pos=[0.507, 0.917, -0.283]
-        self.ab_arm_pos=[0.507, 0.917, -0.10]
+        # self.ab_arm_pos=[0.507, 0.917, -0.10]
+        self.ab_arm_pos=[0.25, 0.58, -0.21]
+        # self.ab_arm_pos=[0.95, 0.58, -0.21]
         # self.ab_arm_pos=[-0.398, -0.337, -0.292]
         # self.ab_arm_pos=[0.57, 0.917, -0.283]
         # self.ab_arm_pos=[0.3, 0.6, -0.283]
         # self.mj_model.body("arm_pose").pos[:3] = self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_arm_pos
         self.mj_model.body("arm_pose").pos[:3] =  self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_arm_pos
+        self.arm_ori_pos = self.mj_model.body("arm_pose").pos.copy()
 
     def domain_randomization(self):
         self.mj_data.qpos[self.drawer_index] += np.random.uniform(self.min_drawer_rate,self.max_drawer_rate)
@@ -39,7 +41,9 @@ class SimNode(AirbotPlayTaskBase):
         # self.mj_model.body("arm_pose").pos[:3] =  get_site_tmat(self.mj_data, self.drawers_handle)[:3,3] + self.ab_arm_pos
 
         if self.random_position:
-            self.mj_model.body("arm_pose").pos[:3] = self.arm_ori_pos[:3] + 3.*(np.random.random(3) - 0.5) * 0.05#2.*(np.random.random(2) - 0.5) * 0.1
+            random_bias = 2.*(np.random.random(3) - 0.5) * 0.20
+            random_bias[0] /= 4
+            self.mj_model.body("arm_pose").pos[:3] = self.arm_ori_pos[:3] + random_bias
         # self.mj_data.site(self.drawers_handle).xpos[0] += 2
 
         mujoco.mj_forward(self.mj_model, self.mj_data)
@@ -73,7 +77,7 @@ cfg.gs_model_dict["hinge_door_5"]   = "hinge/door5.ply"
 # cfg.gs_model_dict["hinge_door_6"]   = "hinge/door6.ply"
 # cfg.gs_model_dict["drawer_3"]   = "hinge/drawer_3.ply"
 # cfg.init_qpos[:] = [1.713, -1.782,  0.932,  0.107,  1.477, -2.426,  0.]
-cfg.init_qpos[:] = [1.713, -1.782,  0.932,  0.107,  1.477, -0.856,  0.]
+cfg.init_qpos[:] = [0, 0.,  0.,  0.,  0, 0,  0.]
 cfg.mjcf_file_path = "mjcf/tasks_airbot_play/open_lots_of_drawers.xml"
 # cfg.mjcf_file_path = "mjcf/tasks_airbot_play/open_drawers.xml"
 # cfg.obj_list     = ["drawer_1", "drawer_2","drawer_3","drawer_4","drawer_5","drawer_6"]
@@ -123,10 +127,7 @@ if __name__ == "__main__":
     arm_ik = AirbotPlayIK()
 
     # trmat = Rotation.from_euler("xyz", [-np.pi/2., 0., np.pi], degrees=False).as_matrix()
-    if args.drawers == 2:
-        trmat = Rotation.from_euler("xyz", [np.pi/2., 0., np.pi], degrees=False).as_matrix()
-    else:
-        trmat = Rotation.from_euler("xyz", [0, 0, np.pi], degrees=False).as_matrix()
+    trmat = np.eye(3)
     stm = SimpleStateMachine()
     stm.max_state_cnt = 7
     max_time = 15.0 #s
