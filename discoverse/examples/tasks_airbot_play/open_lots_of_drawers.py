@@ -33,6 +33,7 @@ class SimNode(AirbotPlayTaskBase):
         # self.ab_arm_pos=[0.3, 0.6, -0.283]
         # self.mj_model.body("arm_pose").pos[:3] = self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_arm_pos
         self.mj_model.body("arm_pose").pos[:3] =  self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_arm_pos
+        self.mj_model.body("table_stretch").pos[:3] = self.mj_model.body("arm_pose").pos[:3]
         self.arm_ori_pos = self.mj_model.body("arm_pose").pos.copy()
         self.ab_cam_pos=[-0.1, -0.2, 0.2]
         self.mj_model.camera("eye_side").pos[:3] = self.mj_model.body("drawer_" + str(self.drawer)).pos[:3] + self.ab_cam_pos
@@ -47,7 +48,7 @@ class SimNode(AirbotPlayTaskBase):
             random_bias[0] /= 4
             self.mj_model.body("arm_pose").pos[:3] = self.arm_ori_pos[:3] + random_bias
         # self.mj_data.site(self.drawers_handle).xpos[0] += 2
-
+        self.mj_model.body("table_stretch").pos[:3] = self.mj_model.body("arm_pose").pos[:3]
         mujoco.mj_forward(self.mj_model, self.mj_data)
 
     def check_success(self):
@@ -65,6 +66,7 @@ class SimNode(AirbotPlayTaskBase):
 cfg = AirbotPlayCfg()
 # cfg.gs_model_dict["background"] = "hinge/drawer1.ply"
 cfg.gs_model_dict["background"] = "scene/lab3/room_with_empty_carbinet.ply"
+cfg.gs_model_dict["table_stretch"]   = "scene/lab3/table_stretch.ply"
 cfg.gs_model_dict["drawer_1"]   = "hinge/drawer1.ply"
 cfg.gs_model_dict["drawer_2"]   = "hinge/drawer2.ply"
 cfg.gs_model_dict["drawer_3"]   = "hinge/drawer3.ply"
@@ -84,7 +86,7 @@ cfg.mjcf_file_path = "mjcf/tasks_airbot_play/open_lots_of_drawers.xml"
 # cfg.mjcf_file_path = "mjcf/tasks_airbot_play/open_drawers.xml"
 # cfg.obj_list     = ["drawer_1", "drawer_2","drawer_3","drawer_4","drawer_5","drawer_6"]
 cfg.obj_list     = ["drawer_1","drawer_2","drawer_3","drawer_4","drawer_5","drawer_6","hinge_door_1",
-                    "hinge_door_2","hinge_door_3","hinge_door_4","hinge_door_5"]
+                    "hinge_door_2","hinge_door_3","hinge_door_4","hinge_door_5","table_stretch"]
 cfg.timestep     = 1/240
 cfg.decimation   = 4
 cfg.sync         = True

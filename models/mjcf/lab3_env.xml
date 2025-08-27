@@ -17,6 +17,10 @@
       <geom size="1.0 0.44 0.015" pos="0 -0.45 1.0" euler="0 1.5708 0" type="box" rgba="1 1 1 1"/>
     </body>
 
+    <body name="table_stretch" pos="0.043 0.583 0.783">
+      <site name="point_site" pos="0 0 0" size="0.001" rgba="0 1 0 1"/>
+    </body>
+
     <!-- <body name="left_wall" pos="0 1.34 0">
       <geom size="1.1 0.015 1" pos="0 0 1" type="box" rgba="0 0 0 1"/>
     </body> -->

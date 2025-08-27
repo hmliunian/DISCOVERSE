@@ -33,6 +33,7 @@ class SimNode(AirbotPlayTaskBase):
         self.ab_cam_pos=[-0.1, -0.2, 0.2]
         self.mj_model.camera("eye_side").pos[:3] = self.mj_model.body("hinge_door_" + str(self.doors)).pos[:3] + self.ab_cam_pos
         # self.mj_model.camera("eye_side").quat[:] = [0.0394695, 0.1947092, 0.1947092, 0.9605305]
+        self.mj_model.body("table_stretch").pos[:3] = self.mj_model.body("arm_pose").pos[:3]
 
     def domain_randomization(self):
         # self.mj_data.qpos[self.drawer_index] += np.random.uniform(self.min_drawer_rate,self.max_drawer_rate)
@@ -45,7 +46,7 @@ class SimNode(AirbotPlayTaskBase):
             random_bias[0] /= 4
             self.mj_model.body("arm_pose").pos[:3] = self.arm_ori_pos[:3] + random_bias
         # self.mj_data.site(self.drawers_handle).xpos[0] += 2
-
+        self.mj_model.body("table_stretch").pos[:3] = self.mj_model.body("arm_pose").pos[:3]
         # mujoco.mj_forward(self.mj_model, self.mj_data)
 
     def check_success(self):
@@ -65,6 +66,7 @@ class SimNode(AirbotPlayTaskBase):
 
 cfg = AirbotPlayCfg()
 cfg.gs_model_dict["background"] = "scene/lab3/room_with_empty_carbinet.ply"
+cfg.gs_model_dict["table_stretch"]   = "scene/lab3/table_stretch.ply"
 cfg.gs_model_dict["drawer_1"]   = "hinge/drawer1.ply"
 cfg.gs_model_dict["drawer_2"]   = "hinge/drawer2.ply"
 cfg.gs_model_dict["drawer_3"]   = "hinge/drawer3.ply"
@@ -81,7 +83,7 @@ cfg.init_qpos[:] = [0,0,0,  0,  0, 0,  0.]
 # cfg.init_qpos[:] = [-0.2, 0,  0,  0,  0, 0,  0.]
 cfg.mjcf_file_path = "mjcf/tasks_airbot_play/open_lots_of_hinge_doors.xml"
 cfg.obj_list     = ["hinge_door_1","hinge_door_2","hinge_door_3","hinge_door_4","hinge_door_5",
-                    "drawer_1","drawer_2","drawer_3","drawer_4","drawer_5","drawer_6"]
+                    "drawer_1","drawer_2","drawer_3","drawer_4","drawer_5","drawer_6","table_stretch"]
 cfg.timestep     = 1/240
 cfg.decimation   = 4
 cfg.sync         = True
